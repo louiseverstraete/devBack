@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Invitation;
 
 class Event extends Model
 {
@@ -24,6 +25,10 @@ class Event extends Model
         'status',
     ];
 
+    public function invitations()
+{
+    return $this->hasMany(Invitation::class, 'event_id', 'event_id');
+}
 
 
     public function user() {

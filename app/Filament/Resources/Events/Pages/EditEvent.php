@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Events\Pages;
 
+use Filament\Actions\Action;
 use App\Filament\Resources\Events\EventResource;
 use App\Services\InvitationService;
 use Filament\Actions\DeleteAction;
@@ -17,7 +18,7 @@ class EditEvent extends EditRecord
         return [
             DeleteAction::make()->visible(fn () => auth()->user()->role === 'ADMIN' || $this->record->organizer_id === auth()->id()),
 
-            Actions\Action::make('send_invitations')
+            Action::make('send_invitations')
                 ->label(function ($record) {
                     $pending = $record->invitations()->pending()->count();
                     return "Envoyer les invitations ({$pending})";
@@ -60,17 +61,12 @@ class EditEvent extends EditRecord
                     } catch (\Exception $e) {
                         Notification::make()
                             ->danger()
-                            ->title('❌ Erreur')
+                            ->title('Erreur')
                             ->body('Impossible d\'envoyer les invitations : ' . $e->getMessage())
                             ->send();
                     }
                 })
-                ->visible(fn ($record) => $record->visibility === 'prive'),
-            
-            // ==========================================
-            // ACTION : Recevoir le récap par email
-            // ==========================================
-
+                ->visible(fn ($record) => $record->visibility === 'PRIVATE' && (auth()->user()->role === 'ADMIN' || $record->organizer_id === auth()->id())),
             
         ];
     }
