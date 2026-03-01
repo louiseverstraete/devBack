@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Filament\Resources\Invits;
+namespace App\Filament\Resources\Invitations;
 
-use App\Filament\Resources\Invits\Pages\CreateInvit;
-use App\Filament\Resources\Invits\Pages\EditInvit;
-use App\Filament\Resources\Invits\Pages\ListInvits;
-use App\Filament\Resources\Invits\Schemas\InvitForm;
-use App\Filament\Resources\Invits\Tables\InvitsTable;
-use App\Models\Invit;
+use App\Filament\Resources\Invitations\Pages\CreateInvitations;
+use App\Filament\Resources\Invitations\Pages\EditInvitations;
+use App\Filament\Resources\Invitations\Pages\ListInvitations;
+use App\Filament\Resources\Invitations\Schemas\InvitationsForm;
+use App\Filament\Resources\Invitations\Tables\InvitationsTable;
+use App\Models\Invitation;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class InvitResource extends Resource
+class InvitationsResource extends Resource
 {
-    protected static ?string $model = Invit::class;
+    protected static ?string $model = Invitation::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
@@ -24,12 +24,12 @@ class InvitResource extends Resource
 
     public static function form(Schema $schema): Schema
     {
-        return InvitForm::configure($schema);
+        return InvitationsForm::configure($schema);
     }
 
     public static function table(Table $table): Table
     {
-        return InvitsTable::configure($table);
+        return InvitationsTable::configure($table);
     }
 
     public static function getRelations(): array
@@ -42,9 +42,9 @@ class InvitResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => ListInvits::route('/'),
-            'create' => CreateInvit::route('/create'),
-            'edit' => EditInvit::route('/{record}/edit'),
+            'index' => ListInvitations::route('/'),
+            'create' => CreateInvitations::route('/create'),
+            'edit' => EditInvitations::route('/{record}/edit'),
         ];
     }
 }

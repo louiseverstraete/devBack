@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Invits\Schemas;
+namespace App\Filament\Resources\Invitations\Schemas;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
@@ -8,7 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
 
-class InvitForm
+class InvitationsForm
 {
     public static function configure(Schema $schema): Schema
     {

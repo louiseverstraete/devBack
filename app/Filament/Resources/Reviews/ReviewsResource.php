@@ -2,8 +2,8 @@
 
 namespace App\Filament\Resources\Reviews;
 
-use App\Filament\Resources\Reviews\Pages\CreateReview;
-use App\Filament\Resources\Reviews\Pages\EditReview;
+use App\Filament\Resources\Reviews\Pages\CreateReviews;
+use App\Filament\Resources\Reviews\Pages\EditReviews;
 use App\Filament\Resources\Reviews\Pages\ListReviews;
 use App\Filament\Resources\Reviews\Schemas\ReviewForm;
 use App\Filament\Resources\Reviews\Tables\ReviewsTable;
@@ -14,7 +14,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 
-class ReviewResource extends Resource
+class ReviewsResource extends Resource
 {
     protected static ?string $model = Review::class;
 
@@ -43,8 +43,8 @@ class ReviewResource extends Resource
     {
         return [
             'index' => ListReviews::route('/'),
-            'create' => CreateReview::route('/create'),
-            'edit' => EditReview::route('/{record}/edit'),
+            'create' => CreateReviews::route('/create'),
+            'edit' => EditReviews::route('/{record}/edit'),
         ];
     }
 }
